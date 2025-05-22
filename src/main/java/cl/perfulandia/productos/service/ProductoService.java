@@ -15,17 +15,13 @@ public class ProductoService {
 @Autowired
 private ProductoRepository productoRepository;
 
-// Método Obtener producto
-public List<Producto> obtenerProducto(){
-return productoRepository.findAll();
-}
 
 // Save : Guarda el producto
 public Producto guardarProducto(Producto producto){ 
     return productoRepository.save(producto);}
 
 // Método Listar todos los productos
-public List<Producto> listarTodos(Producto producto){
+public List<Producto> listarTodos(){
     return productoRepository.findAll();
 }
 

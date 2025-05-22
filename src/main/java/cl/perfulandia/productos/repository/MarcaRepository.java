@@ -1,5 +1,9 @@
 package cl.perfulandia.productos.repository;
 
-public interface MarcaRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import cl.perfulandia.productos.model.Marca;
+
+public interface MarcaRepository extends JpaRepository<Marca,Integer> {
 
 }
