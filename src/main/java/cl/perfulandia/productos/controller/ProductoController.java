@@ -12,6 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 import cl.perfulandia.productos.model.Producto;
 import cl.perfulandia.productos.service.ProductoService;
 
+
+//Controller - Lo que ve el usuario / API
+//Aquí escribes los endpoints o URLs que otros van a usar para interactuar con tu app
+//Sirve para: recibir pedidos (desde el navegador o el celular) y responder con datos.
+
+
 @RestController
 @RequestMapping ("/productos")
 public class ProductoController {

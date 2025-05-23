@@ -17,6 +17,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor //Constructor sin parametros
 @AllArgsConstructor // Constructor con parametros
 
+
+
+// Model – Los datos
+//Aquí defines las clases que representan las cosas del mundo real
+//Sirve para: decirle al sistema qué datos existen.
+
 public class Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // incremen

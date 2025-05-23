@@ -9,6 +9,10 @@ import org.springframework.stereotype.Service;
 import cl.perfulandia.productos.model.Producto;
 import cl.perfulandia.productos.repository.ProductoRepository;
 
+//Service – La lógica del negocio
+//Aquí haces los cálculos o reglas de la app.
+//Sirve para: hacer todo el “cerebro” de la app (precios, reglas, validaciones).
+
 @Service
 public class ProductoService {
 
