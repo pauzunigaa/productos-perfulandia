@@ -17,7 +17,7 @@ public class ProductoController {
     private ProductoService productoService;
 
     @PostMapping // RECIBE PETICIONES DE TIPO POST
-    public Producto guardarProducto(@RequestBody Producto producto) { // todo lo del cuerpo de petición se lo paso a la // variable producto
+    public Optional<Producto> guardarProducto(@RequestBody Producto producto) { // todo lo del cuerpo de petición se lo paso a la // variable producto
         return productoService.guardarProducto(producto);
     }
 

@@ -21,8 +21,9 @@ public class ProductoService {
     // Save : Guarda el producto
     // Guarda un nuevo producto en la base de datos.
 
-    public Producto guardarProducto(Producto producto) {
-        return productoRepository.save(producto);
+    public Optional <Producto> guardarProducto(Producto producto) {
+        Producto productoGuardado = productoRepository.save(producto);// te devuelve lo que encuentra
+        return productoRepository.findById(productoGuardado.getId()); // te devuelve nombre marca y categoria
     }
 
     // Método Listar todos los productos
