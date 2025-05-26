@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import cl.perfulandia.productos.model.Marca;
 
-public interface MarcaRepository extends JpaRepository<Marca,Integer> {
+public interface MarcaRepository extends JpaRepository<Marca,Long> {
 
 }

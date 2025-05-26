@@ -1,18 +1,23 @@
 package cl.perfulandia.productos.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+// import jakarta.persistence.JoinColumn;
+// import jakarta.persistence.ManyToOne;
+// import jakarta.persistence.OneToMany;
+// import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Table(name = "producto")
+@Entity // una tabla en la BD,cada atribut es una columna en la tabla
+@Table(name = "productos") // Nombre de la tabla en la BD
 @Data   //Getter and Setter 
 @NoArgsConstructor //Constructor sin parametros
 @AllArgsConstructor // Constructor con parametros
@@ -24,18 +29,28 @@ import lombok.NoArgsConstructor;
 //Sirve para: decirle al sistema qué datos existen.
 
 public class Producto {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // incremen
-    private Integer id;
+    @Id //esta es la primary key
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // incrementa automático ese id
+    private Long id;
+
+    @Column(nullable = false, length = 100)
     private String nombre;
+
+
+    @Column(length = 255, nullable = true)
     private String descripcion;
+
+    //Relación con Categoría
     @ManyToOne
-    @JoinColumn(name = "categoria_id", nullable = false)
+    @JoinColumn(name = "categoria_id", nullable = false) //FK
     private Categoria categoria;
 
+    // // Relacion con Marca
     @ManyToOne
     @JoinColumn(name = "marca_id", nullable = false)
     private Marca marca;
+
+    @Column(nullable = false)
     private Double precio;
     private boolean disponible;
 }

@@ -9,22 +9,22 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import cl.perfulandia.productos.model.Categoria;
-import cl.perfulandia.productos.service.CategoriaService;
+import cl.perfulandia.productos.model.Inventario;
+import cl.perfulandia.productos.service.InventarioService;
 
 @RestController
-@RequestMapping ("/api/categorias")
-public class CategoriaController {
+@RequestMapping ("/api/inventarios")
+public class InventarioController {
 
 @Autowired
-private CategoriaService categoriaService;
-@PostMapping //RECIBE PETICIONES DE TIPO POST
-public Categoria guardarCategoria(@RequestBody Categoria categoria){
-    return categoriaService.guardarCategoria(categoria);
+private InventarioService inventarioService;
+@PostMapping
+public Inventario guardarStock(@RequestBody Inventario inventario){
+    return inventarioService.guardarStock(inventario);
 }
 @GetMapping
-public List <Categoria>listar(){
-    return categoriaService.listarTodos();
+public List <Inventario>listar(){
+    return inventarioService.listarTodos();
 }
 
 }

@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cl.perfulandia.productos.model.Categoria;
-import cl.perfulandia.productos.model.Producto;
 import cl.perfulandia.productos.repository.CategoriaRepository;
 
 @Service
@@ -24,4 +23,3 @@ public List<Categoria> listarTodos(){
     return categoriaRepository.findAll();
 }
 }
-
