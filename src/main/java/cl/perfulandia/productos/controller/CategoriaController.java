@@ -19,7 +19,7 @@ public class CategoriaController {
 @Autowired
 private CategoriaService categoriaService;
 @PostMapping //RECIBE PETICIONES DE TIPO POST
-public Categoria guardarCategoria(@RequestBody Categoria categoria){
+public Categoria crearCategoria(@RequestBody Categoria categoria){
     return categoriaService.guardarCategoria(categoria);
 }
 @GetMapping
