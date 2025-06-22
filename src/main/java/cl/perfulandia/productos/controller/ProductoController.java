@@ -22,12 +22,10 @@ import javax.swing.text.html.parser.Entity;
 @RestController // Controlador REST
 @RequestMapping("/api/productos") // Ruta base para este recurso
 
-
 public class ProductoController {
 
     @Autowired
     private ProductoModelAssembler assembler;
-
 
     @Autowired
     private ProductoService productoService;
@@ -35,49 +33,41 @@ public class ProductoController {
 
     @Operation(summary = "Guarda un producto")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "201", description = "Producto guardado exitosamente",content = @Content(mediaType = "application/json",schema = @Schema(implementation = Producto.class))),
-        @ApiResponse(responseCode = "500",description = "El producto no se ha podido guardar,intente nuevamente...")})
-  
+            @ApiResponse(responseCode = "201", description = "Producto guardado exitosamente", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Producto.class))),
+            @ApiResponse(responseCode = "500", description = "El producto no se ha podido guardar,intente nuevamente...") })
+
     @PostMapping // RECIBE PETICIONES DE TIPO POST
-    public Optional<Producto> guardarProducto(@RequestBody Producto producto) { // todo lo del cuerpo de petición se lo paso a la // variable producto
+    public Optional<Producto> guardarProducto(@RequestBody Producto producto) { // todo lo del cuerpo de petición se lo
+                                                                                // paso a la // variable producto
         return productoService.guardarProducto(producto);
     }
 
-
-
     @Operation(summary = "Obtiene el listado de todos los Productos")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Lista obtenida en forma exitosa",content = @Content(mediaType = "application/json",schema = @Schema(implementation = Producto.class))),
-        @ApiResponse(responseCode = "404",description = "Listado de productos no encontrado")})
+            @ApiResponse(responseCode = "200", description = "Lista obtenida en forma exitosa", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Producto.class))),
+            @ApiResponse(responseCode = "404", description = "Listado de productos no encontrado") })
 
     @GetMapping // RECIBE PETICIONES DE TIPO GET
     public List<Producto> listarProductos() { // Devuelve todos los productos
         return productoService.listarTodos();
     }
 
-
-
-
     @Operation(summary = "Obtiene un producto por ID")
-    @ApiResponses(value ={
-        @ApiResponse(responseCode = "200",description = "ID Producto encontrado",
-        content = @Content(mediaType = "application/json",
-        schema = @Schema(implementation = Producto.class))),
-        @ApiResponse(responseCode = "404",description = "ID no encontrado")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "ID Producto encontrado", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Producto.class))),
+            @ApiResponse(responseCode = "404", description = "ID no encontrado")
     })
     @GetMapping("/{id}") // GET POR ID
     public EntityModel<Producto> obtenerProductoPorId(@PathVariable Long id) {
-    Optional <Producto> producto = productoService.buscarPorId(id);
+        Producto producto = productoService.buscarPorId(id)
+                .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
         return assembler.toModel(producto); // Busca un producto por su ID
     }
 
-
-    @Operation(summary = "Elimino un producto por ID")
-    @ApiResponses(value ={
-        @ApiResponse(responseCode = "200",description = "Producto Eliminado",
-        content = @Content(mediaType = "application/json",
-        schema = @Schema(implementation = Producto.class))),
-        @ApiResponse(responseCode = "404",description = "Producto no encontrado.")
+    @Operation(summary = "Elimina un producto por ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Producto Eliminado", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Producto.class))),
+            @ApiResponse(responseCode = "404", description = "Producto no encontrado.")
     })
     @DeleteMapping("/{id}") // PETICIÓN DELETE
     public ResponseEntity<Void> eliminarProducto(@PathVariable Long id) {
@@ -85,4 +75,3 @@ public class ProductoController {
         return ResponseEntity.noContent().build();
     }
 }
-
