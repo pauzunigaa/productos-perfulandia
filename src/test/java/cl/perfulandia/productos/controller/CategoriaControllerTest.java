@@ -10,7 +10,6 @@ import java.util.List;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +27,7 @@ import org.springframework.http.MediaType;
 public class CategoriaControllerTest {
 
     @Autowired
-    private MockMvc mockMvc;
+    private MockMvc mockMvc; //reemplaza objetos con simulaciones
 
     @MockBean
     private CategoriaService categoriaService;
@@ -60,20 +59,22 @@ public class CategoriaControllerTest {
                 .content(objectMapper.writeValueAsString(categoria))) // Convierte el objeto Categoria a JSON
                 .andExpect(status().isOk()) // Verifica que el estado de la respuesta sea 200 OK
                 .andExpect(jsonPath("$.nombre").value("cremas")); // Verifica que el nombre del objeto devuelto sea
-                                                                  // "cremas"
+                                                                  // cremas"
 
     }
 
-
     @Test
     public void testListar() throws Exception {
-        // Define el comportamiento del mock: cuando se llame a findAll(), devuelve una lista con una Categoria
+        // Define el comportamiento del mock: cuando se llame a findAll(), devuelve una
+        // lista con una Categoria
         when(categoriaService.listarTodos()).thenReturn(List.of(categoria));
 
-        // Realiza una petición GET a /api/categorias y verifica que la respuesta sea correcta
+        // Realiza una petición GET a /api/categorias y verifica que la respuesta sea
+        // correcta
         mockMvc.perform(get("/api/categorias"))
                 .andExpect(status().isOk()) // Verifica que el estado de la respuesta sea 200 OK
-                .andExpect(jsonPath("$[0].nombre").value("cremas")); // Verifica que el primer elemento tenga el nombre "Juan Pérez"
+                .andExpect(jsonPath("$[0].nombre").value("cremas")); // Verifica que el primer elemento tenga el nombre
+                                                                     // "Juan Pérez"
     }
 
 }

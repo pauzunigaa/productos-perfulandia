@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-import javax.swing.text.html.parser.Entity;
 
 @RestController // Controlador REST
 @RequestMapping("/api/productos") // Ruta base para este recurso
@@ -33,7 +32,9 @@ public class ProductoController {
 
     @Operation(summary = "Guarda un producto")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Producto guardado exitosamente", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Producto.class))),
+            @ApiResponse(responseCode = "201", description = "Producto guardado exitosamente", 
+            content = @Content(mediaType = "application/json", 
+            schema = @Schema(implementation = Producto.class))),
             @ApiResponse(responseCode = "500", description = "El producto no se ha podido guardar,intente nuevamente...") })
 
     @PostMapping // RECIBE PETICIONES DE TIPO POST
